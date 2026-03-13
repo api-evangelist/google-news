@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/google-news/refs/heads/main/json-schema/google-news.json",
+  "title": "Google News RSS Feed Schema",
+  "description": "JSON Schema representing the structure of Google News RSS feed items.",
+  "type": "object",
+  "$defs": {
+    "RSSFeed": {
+      "type": "object",
+      "properties": {
+        "channel": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "The title of the RSS channel."
+            },
+            "link": {
+              "type": "string",
+              "format": "uri",
+              "description": "The URL of the channel."
+            },
+            "description": {
+              "type": "string",
+              "description": "Description of the channel."
+            },
+            "language": {
+              "type": "string",
+              "description": "The language of the channel."
+            },
+            "lastBuildDate": {
+              "type": "string",
+              "description": "The last build date of the feed."
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/NewsItem"
+              }
+            }
+          }
+        }
+      }
+    },
+    "NewsItem": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "The headline of the news article."
+        },
+        "link": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL of the news article."
+        },
+        "pubDate": {
+          "type": "string",
+          "description": "Publication date of the article."
+        },
+        "description": {
+          "type": "string",
+          "description": "A brief summary or snippet of the article."
+        },
+        "source": {
+          "type": "string",
+          "description": "The news source name."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,230 @@
+openapi: 3.1.0
+info:
+  title: Google News RSS API
+  description: >-
+    Google News provides RSS feeds that deliver news headlines organized by topic,
+    location, and search query. While not an officially documented REST API, Google
+    News exposes structured RSS/XML feeds that can be consumed programmatically to
+    retrieve top stories, topic-based headlines, location-specific news, and search
+    results across multiple languages and regions.
+  version: 1.0.0
+  contact:
+    name: Google News
+    url: https://news.google.com
+  license:
+    name: Google Terms of Service
+    url: https://policies.google.com/terms
+externalDocs:
+  description: Google News
+  url: https://news.google.com
+servers:
+  - url: https://news.google.com
+    description: Google News RSS Server
+tags:
+  - name: Headlines
+    description: Retrieve top news headlines
+  - name: Topics
+    description: Retrieve news by topic
+  - name: Search
+    description: Search for news articles
+paths:
+  /rss:
+    get:
+      operationId: getTopHeadlines
+      summary: Get Top Headlines
+      description: Retrieves the top news headlines as an RSS feed.
+      tags:
+        - Headlines
+      parameters:
+        - name: hl
+          in: query
+          description: Host language (e.g., en-US).
+          schema:
+            type: string
+            default: en-US
+        - name: gl
+          in: query
+          description: Geographic location (e.g., US).
+          schema:
+            type: string
+            default: US
+        - name: ceid
+          in: query
+          description: Country and language edition identifier (e.g., US:en).
+          schema:
+            type: string
+            default: US:en
+      responses:
+        '200':
+          description: RSS feed of top headlines.
+          content:
+            application/rss+xml:
+              schema:
+                $ref: '#/components/schemas/RSSFeed'
+  /rss/headlines/section/topic/{topic}:
+    get:
+      operationId: getTopicHeadlines
+      summary: Get Headlines by Topic
+      description: >-
+        Retrieves news headlines for a specific topic such as WORLD, NATION,
+        BUSINESS, TECHNOLOGY, ENTERTAINMENT, SPORTS, SCIENCE, or HEALTH.
+      tags:
+        - Topics
+      parameters:
+        - name: topic
+          in: path
+          required: true
+          description: The topic identifier.
+          schema:
+            type: string
+            enum:
+              - WORLD
+              - NATION
+              - BUSINESS
+              - TECHNOLOGY
+              - ENTERTAINMENT
+              - SPORTS
+              - SCIENCE
+              - HEALTH
+        - name: hl
+          in: query
+          description: Host language.
+          schema:
+            type: string
+        - name: gl
+          in: query
+          description: Geographic location.
+          schema:
+            type: string
+        - name: ceid
+          in: query
+          description: Country and language edition identifier.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: RSS feed of topic headlines.
+          content:
+            application/rss+xml:
+              schema:
+                $ref: '#/components/schemas/RSSFeed'
+  /rss/headlines/section/geo/{location}:
+    get:
+      operationId: getLocationHeadlines
+      summary: Get Headlines by Location
+      description: Retrieves news headlines for a specific geographic location.
+      tags:
+        - Headlines
+      parameters:
+        - name: location
+          in: path
+          required: true
+          description: The location name or code.
+          schema:
+            type: string
+        - name: hl
+          in: query
+          description: Host language.
+          schema:
+            type: string
+        - name: gl
+          in: query
+          description: Geographic location.
+          schema:
+            type: string
+        - name: ceid
+          in: query
+          description: Country and language edition identifier.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: RSS feed of location-based headlines.
+          content:
+            application/rss+xml:
+              schema:
+                $ref: '#/components/schemas/RSSFeed'
+  /rss/search:
+    get:
+      operationId: searchNews
+      summary: Search News
+      description: Searches for news articles matching the provided query.
+      tags:
+        - Search
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: The search query string.
+          schema:
+            type: string
+        - name: hl
+          in: query
+          description: Host language.
+          schema:
+            type: string
+        - name: gl
+          in: query
+          description: Geographic location.
+          schema:
+            type: string
+        - name: ceid
+          in: query
+          description: Country and language edition identifier.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: RSS feed of search results.
+          content:
+            application/rss+xml:
+              schema:
+                $ref: '#/components/schemas/RSSFeed'
+components:
+  schemas:
+    RSSFeed:
+      type: object
+      description: An RSS 2.0 feed containing news items.
+      properties:
+        channel:
+          type: object
+          properties:
+            title:
+              type: string
+              description: The title of the RSS channel.
+            link:
+              type: string
+              format: uri
+              description: The URL of the channel.
+            description:
+              type: string
+              description: Description of the channel.
+            language:
+              type: string
+              description: The language of the channel.
+            lastBuildDate:
+              type: string
+              description: The last build date of the feed.
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/NewsItem'
+    NewsItem:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The headline of the news article.
+        link:
+          type: string
+          format: uri
+          description: The URL of the news article.
+        pubDate:
+          type: string
+          description: Publication date of the article.
+        description:
+          type: string
+          description: A brief summary of the article.
+        source:
+          type: string
+          description: The news source name.

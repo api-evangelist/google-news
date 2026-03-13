@@ -1,0 +1,40 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "gnews": "https://news.google.com/rss#",
+    "NewsArticle": "https://schema.org/NewsArticle",
+    "headline": {
+      "@id": "https://schema.org/headline",
+      "@type": "xsd:string"
+    },
+    "url": {
+      "@id": "https://schema.org/url",
+      "@type": "@id"
+    },
+    "datePublished": {
+      "@id": "https://schema.org/datePublished",
+      "@type": "xsd:dateTime"
+    },
+    "description": {
+      "@id": "https://schema.org/description",
+      "@type": "xsd:string"
+    },
+    "publisher": {
+      "@id": "https://schema.org/publisher",
+      "@type": "@id"
+    },
+    "topic": {
+      "@id": "gnews:topic",
+      "@type": "xsd:string"
+    },
+    "location": {
+      "@id": "gnews:geo",
+      "@type": "xsd:string"
+    },
+    "language": {
+      "@id": "gnews:hl",
+      "@type": "xsd:string"
+    },
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  }
+}
