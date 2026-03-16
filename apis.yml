@@ -1,3 +1,4 @@
+aid: google-news
 name: Google News RSS API
 description: >-
   Google News provides RSS feeds that deliver news headlines organized by topic,
@@ -8,8 +9,9 @@ description: >-
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/google-news/refs/heads/main/apis.yml
 created: '2026-03-13'
-modified: '2026-03-13'
-specificationVersion: '0.18'
+modified: '2026-03-16'
+specificationVersion: '0.19'
+type: Index
 tags:
   - News
   - RSS
@@ -25,17 +27,27 @@ apis:
     humanURL: https://news.google.com
     baseURL: https://news.google.com/rss
     properties:
+      - type: Documentation
+        url: https://news.google.com/rss/help
       - type: OpenAPI
         url: https://raw.githubusercontent.com/api-evangelist/google-news/refs/heads/main/openapi/openapi.yml
+      - type: Getting Started
+        url: https://news.google.com
       - type: JSONSchema
         url: https://raw.githubusercontent.com/api-evangelist/google-news/refs/heads/main/json-schema/google-news.json
       - type: JSONLD
         url: https://raw.githubusercontent.com/api-evangelist/google-news/refs/heads/main/json-ld/google-news.jsonld
 common:
-  - type: GettingStarted
+  - type: Portal
     url: https://news.google.com
-  - type: Pricing
+  - type: Getting Started
     url: https://news.google.com
+  - type: Terms of Service
+    url: https://policies.google.com/terms
+  - type: Privacy Policy
+    url: https://policies.google.com/privacy
+  - type: Support
+    url: https://support.google.com/news
   - type: JSONLD
     url: https://raw.githubusercontent.com/api-evangelist/google-news/refs/heads/main/json-ld/google-news.jsonld
 maintainers:
