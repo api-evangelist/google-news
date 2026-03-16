@@ -1,5 +1,5 @@
 aid: google-news
-name: Google News RSS API
+name: Google News RSS
 description: >-
   Google News provides RSS feeds that deliver news headlines organized by topic,
   location, and search query. The feeds expose structured XML data that can be
