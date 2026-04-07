@@ -23,10 +23,10 @@ servers:
 tags:
   - name: Headlines
     description: Retrieve top news headlines
-  - name: Topics
-    description: Retrieve news by topic
   - name: Search
     description: Search for news articles
+  - name: Topics
+    description: Retrieve news by topic
 paths:
   /rss:
     get:
