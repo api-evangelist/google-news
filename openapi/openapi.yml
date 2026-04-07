@@ -31,7 +31,7 @@ paths:
   /rss:
     get:
       operationId: getTopHeadlines
-      summary: Get Top Headlines
+      summary: Google News RSS Get Top Headlines
       description: Retrieves the top news headlines as an RSS feed.
       tags:
         - Headlines
@@ -64,7 +64,7 @@ paths:
   /rss/headlines/section/topic/{topic}:
     get:
       operationId: getTopicHeadlines
-      summary: Get Headlines by Topic
+      summary: Google News RSS Get Headlines by Topic
       description: >-
         Retrieves news headlines for a specific topic such as WORLD, NATION,
         BUSINESS, TECHNOLOGY, ENTERTAINMENT, SPORTS, SCIENCE, or HEALTH.
@@ -111,7 +111,7 @@ paths:
   /rss/headlines/section/geo/{location}:
     get:
       operationId: getLocationHeadlines
-      summary: Get Headlines by Location
+      summary: Google News RSS Get Headlines by Location
       description: Retrieves news headlines for a specific geographic location.
       tags:
         - Headlines
@@ -147,7 +147,7 @@ paths:
   /rss/search:
     get:
       operationId: searchNews
-      summary: Search News
+      summary: Google News RSS Search News
       description: Searches for news articles matching the provided query.
       tags:
         - Search
