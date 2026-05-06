@@ -1,0 +1,298 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Google News RSS API
+  description: Google News provides RSS feeds that deliver news headlines organized by topic, location, and search query.
+    While not an officially documented REST API, Google News exposes structured RSS/XML feeds that can be consumed programmatically
+    to retrieve top stories, topic-based headlines, location-specific news, and search results across multiple languages and
+    regions.
+  tags:
+  - Google
+  - News
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: google-news
+    baseUri: https://news.google.com
+    description: Google News RSS API HTTP API.
+    resources:
+    - name: rss
+      path: /rss
+      operations:
+      - name: gettopheadlines
+        method: GET
+        description: Google News RSS Get Top Headlines
+        inputParameters:
+        - name: hl
+          in: query
+          type: string
+          description: Host language (e.g., en-US).
+        - name: gl
+          in: query
+          type: string
+          description: Geographic location (e.g., US).
+        - name: ceid
+          in: query
+          type: string
+          description: Country and language edition identifier (e.g., US:en).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: rss-headlines-section-topic-topic
+      path: /rss/headlines/section/topic/{topic}
+      operations:
+      - name: gettopicheadlines
+        method: GET
+        description: Google News RSS Get Headlines by Topic
+        inputParameters:
+        - name: topic
+          in: path
+          type: string
+          required: true
+          description: The topic identifier.
+        - name: hl
+          in: query
+          type: string
+          description: Host language.
+        - name: gl
+          in: query
+          type: string
+          description: Geographic location.
+        - name: ceid
+          in: query
+          type: string
+          description: Country and language edition identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: rss-headlines-section-geo-location
+      path: /rss/headlines/section/geo/{location}
+      operations:
+      - name: getlocationheadlines
+        method: GET
+        description: Google News RSS Get Headlines by Location
+        inputParameters:
+        - name: location
+          in: path
+          type: string
+          required: true
+          description: The location name or code.
+        - name: hl
+          in: query
+          type: string
+          description: Host language.
+        - name: gl
+          in: query
+          type: string
+          description: Geographic location.
+        - name: ceid
+          in: query
+          type: string
+          description: Country and language edition identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: rss-search
+      path: /rss/search
+      operations:
+      - name: searchnews
+        method: GET
+        description: Google News RSS Search News
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          required: true
+          description: The search query string.
+        - name: hl
+          in: query
+          type: string
+          description: Host language.
+        - name: gl
+          in: query
+          type: string
+          description: Geographic location.
+        - name: ceid
+          in: query
+          type: string
+          description: Country and language edition identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: google-news-rest
+    description: REST adapter for Google News RSS API.
+    resources:
+    - path: /rss
+      name: gettopheadlines
+      operations:
+      - method: GET
+        name: gettopheadlines
+        description: Google News RSS Get Top Headlines
+        call: google-news.gettopheadlines
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /rss/headlines/section/topic/{topic}
+      name: gettopicheadlines
+      operations:
+      - method: GET
+        name: gettopicheadlines
+        description: Google News RSS Get Headlines by Topic
+        call: google-news.gettopicheadlines
+        with:
+          topic: rest.topic
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /rss/headlines/section/geo/{location}
+      name: getlocationheadlines
+      operations:
+      - method: GET
+        name: getlocationheadlines
+        description: Google News RSS Get Headlines by Location
+        call: google-news.getlocationheadlines
+        with:
+          location: rest.location
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /rss/search
+      name: searchnews
+      operations:
+      - method: GET
+        name: searchnews
+        description: Google News RSS Search News
+        call: google-news.searchnews
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: google-news-mcp
+    transport: http
+    description: MCP adapter for Google News RSS API for AI agent use.
+    tools:
+    - name: gettopheadlines
+      description: Google News RSS Get Top Headlines
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: google-news.gettopheadlines
+      with:
+        hl: tools.hl
+        gl: tools.gl
+        ceid: tools.ceid
+      inputParameters:
+      - name: hl
+        type: string
+        description: Host language (e.g., en-US).
+      - name: gl
+        type: string
+        description: Geographic location (e.g., US).
+      - name: ceid
+        type: string
+        description: Country and language edition identifier (e.g., US:en).
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettopicheadlines
+      description: Google News RSS Get Headlines by Topic
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: google-news.gettopicheadlines
+      with:
+        topic: tools.topic
+        hl: tools.hl
+        gl: tools.gl
+        ceid: tools.ceid
+      inputParameters:
+      - name: topic
+        type: string
+        description: The topic identifier.
+        required: true
+      - name: hl
+        type: string
+        description: Host language.
+      - name: gl
+        type: string
+        description: Geographic location.
+      - name: ceid
+        type: string
+        description: Country and language edition identifier.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getlocationheadlines
+      description: Google News RSS Get Headlines by Location
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: google-news.getlocationheadlines
+      with:
+        location: tools.location
+        hl: tools.hl
+        gl: tools.gl
+        ceid: tools.ceid
+      inputParameters:
+      - name: location
+        type: string
+        description: The location name or code.
+        required: true
+      - name: hl
+        type: string
+        description: Host language.
+      - name: gl
+        type: string
+        description: Geographic location.
+      - name: ceid
+        type: string
+        description: Country and language edition identifier.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: searchnews
+      description: Google News RSS Search News
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: google-news.searchnews
+      with:
+        q: tools.q
+        hl: tools.hl
+        gl: tools.gl
+        ceid: tools.ceid
+      inputParameters:
+      - name: q
+        type: string
+        description: The search query string.
+        required: true
+      - name: hl
+        type: string
+        description: Host language.
+      - name: gl
+        type: string
+        description: Geographic location.
+      - name: ceid
+        type: string
+        description: Country and language edition identifier.
+      outputParameters:
+      - type: object
+        mapping: $.
