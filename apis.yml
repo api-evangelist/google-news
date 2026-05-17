@@ -31,7 +31,7 @@ apis:
         url: https://news.google.com/rss/help
       - type: OpenAPI
         url: https://raw.githubusercontent.com/api-evangelist/google-news/refs/heads/main/openapi/openapi.yml
-      - type: Getting Started
+      - type: GettingStarted
         url: https://news.google.com
       - type: JSONSchema
         url: https://raw.githubusercontent.com/api-evangelist/google-news/refs/heads/main/json-schema/google-news.json
@@ -40,11 +40,11 @@ apis:
 common:
   - type: Portal
     url: https://news.google.com
-  - type: Getting Started
+  - type: GettingStarted
     url: https://news.google.com
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://policies.google.com/terms
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://policies.google.com/privacy
   - type: Support
     url: https://support.google.com/news
