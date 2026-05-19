@@ -1,0 +1,148 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Google News RSS API — Headlines
+  description: 'Google News RSS API — Headlines. 2 operations. Lead operation: Google News RSS Get Top Headlines. Self-contained
+    Naftiko capability covering one Google News business surface.'
+  tags:
+  - Google News
+  - Headlines
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    GOOGLE_NEWS_API_KEY: GOOGLE_NEWS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: openapi-headlines
+    baseUri: https://news.google.com
+    description: Google News RSS API — Headlines business capability. Self-contained, no shared references.
+    resources:
+    - name: rss
+      path: /rss
+      operations:
+      - name: gettopheadlines
+        method: GET
+        description: Google News RSS Get Top Headlines
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: hl
+          in: query
+          type: string
+          description: Host language (e.g., en-US).
+        - name: gl
+          in: query
+          type: string
+          description: Geographic location (e.g., US).
+        - name: ceid
+          in: query
+          type: string
+          description: Country and language edition identifier (e.g., US:en).
+    - name: rss-headlines-section-geo-location
+      path: /rss/headlines/section/geo/{location}
+      operations:
+      - name: getlocationheadlines
+        method: GET
+        description: Google News RSS Get Headlines by Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location
+          in: path
+          type: string
+          description: The location name or code.
+          required: true
+        - name: hl
+          in: query
+          type: string
+          description: Host language.
+        - name: gl
+          in: query
+          type: string
+          description: Geographic location.
+        - name: ceid
+          in: query
+          type: string
+          description: Country and language edition identifier.
+  exposes:
+  - type: rest
+    namespace: openapi-headlines-rest
+    port: 8080
+    description: REST adapter for Google News RSS API — Headlines. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/rss
+      name: rss
+      description: REST surface for rss.
+      operations:
+      - method: GET
+        name: gettopheadlines
+        description: Google News RSS Get Top Headlines
+        call: openapi-headlines.gettopheadlines
+        with:
+          hl: rest.hl
+          gl: rest.gl
+          ceid: rest.ceid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/rss/headlines/section/geo/{location}
+      name: rss-headlines-section-geo-location
+      description: REST surface for rss-headlines-section-geo-location.
+      operations:
+      - method: GET
+        name: getlocationheadlines
+        description: Google News RSS Get Headlines by Location
+        call: openapi-headlines.getlocationheadlines
+        with:
+          location: rest.location
+          hl: rest.hl
+          gl: rest.gl
+          ceid: rest.ceid
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: openapi-headlines-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Google News RSS API — Headlines. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: google-news-rss-get-top
+      description: Google News RSS Get Top Headlines
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi-headlines.gettopheadlines
+      with:
+        hl: tools.hl
+        gl: tools.gl
+        ceid: tools.ceid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: google-news-rss-get-headlines
+      description: Google News RSS Get Headlines by Location
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi-headlines.getlocationheadlines
+      with:
+        location: tools.location
+        hl: tools.hl
+        gl: tools.gl
+        ceid: tools.ceid
+      outputParameters:
+      - type: object
+        mapping: $.
