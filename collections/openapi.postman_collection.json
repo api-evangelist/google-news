@@ -1,0 +1,522 @@
+{
+  "item": [
+    {
+      "id": "3d579f57-3f5c-4805-9ce6-7cb8cc4f21b6",
+      "name": "Headlines",
+      "description": {
+        "content": "Retrieve top news headlines",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6454e7bf-e32e-4875-9064-bea6b79b22a9",
+          "name": "Google News RSS Get Top Headlines",
+          "request": {
+            "name": "Google News RSS Get Top Headlines",
+            "description": {
+              "content": "Retrieves the top news headlines as an RSS feed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rss"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "hl",
+                  "value": "en-US",
+                  "description": "Host language (e.g., en-US)."
+                },
+                {
+                  "disabled": false,
+                  "key": "gl",
+                  "value": "US",
+                  "description": "Geographic location (e.g., US)."
+                },
+                {
+                  "disabled": false,
+                  "key": "ceid",
+                  "value": "US:en",
+                  "description": "Country and language edition identifier (e.g., US:en)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/rss+xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "05672fd0-4ea4-4820-b540-3d8b8cf3b3ee",
+              "name": "RSS feed of top headlines.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rss"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hl",
+                      "value": "en-US"
+                    },
+                    {
+                      "key": "gl",
+                      "value": "US"
+                    },
+                    {
+                      "key": "ceid",
+                      "value": "US:en"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/rss+xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/rss+xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <channel>\n    <title>(string)</title>\n    <link>(string)</link>\n    <description>(string)</description>\n    <language>(string)</language>\n    <lastBuildDate>(string)</lastBuildDate>\n    <items>\n      <title>(string)</title>\n      <link>(string)</link>\n      <pubDate>(string)</pubDate>\n      <description>(string)</description>\n      <source>(string)</source>\n    </items>\n    <items>\n      <title>(string)</title>\n      <link>(string)</link>\n      <pubDate>(string)</pubDate>\n      <description>(string)</description>\n      <source>(string)</source>\n    </items>\n  </channel>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83b95caf-da63-4867-aac0-78adbde43b0b",
+          "name": "Google News RSS Get Headlines by Location",
+          "request": {
+            "name": "Google News RSS Get Headlines by Location",
+            "description": {
+              "content": "Retrieves news headlines for a specific geographic location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rss",
+                "headlines",
+                "section",
+                "geo",
+                ":location"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "hl",
+                  "value": "<string>",
+                  "description": "Host language."
+                },
+                {
+                  "disabled": false,
+                  "key": "gl",
+                  "value": "<string>",
+                  "description": "Geographic location."
+                },
+                {
+                  "disabled": false,
+                  "key": "ceid",
+                  "value": "<string>",
+                  "description": "Country and language edition identifier."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "location",
+                  "description": "(Required) The location name or code."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/rss+xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da0b1193-8316-4d66-883b-b7b417e90271",
+              "name": "RSS feed of location-based headlines.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rss",
+                    "headlines",
+                    "section",
+                    "geo",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "gl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ceid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) The location name or code."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/rss+xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/rss+xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <channel>\n    <title>(string)</title>\n    <link>(string)</link>\n    <description>(string)</description>\n    <language>(string)</language>\n    <lastBuildDate>(string)</lastBuildDate>\n    <items>\n      <title>(string)</title>\n      <link>(string)</link>\n      <pubDate>(string)</pubDate>\n      <description>(string)</description>\n      <source>(string)</source>\n    </items>\n    <items>\n      <title>(string)</title>\n      <link>(string)</link>\n      <pubDate>(string)</pubDate>\n      <description>(string)</description>\n      <source>(string)</source>\n    </items>\n  </channel>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b2187309-6355-424a-89a6-8019f4048318",
+      "name": "Search",
+      "description": {
+        "content": "Search for news articles",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "818ad966-4b79-4b4b-a381-d782bec6c6c4",
+          "name": "Google News RSS Search News",
+          "request": {
+            "name": "Google News RSS Search News",
+            "description": {
+              "content": "Searches for news articles matching the provided query.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rss",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) The search query string."
+                },
+                {
+                  "disabled": false,
+                  "key": "hl",
+                  "value": "<string>",
+                  "description": "Host language."
+                },
+                {
+                  "disabled": false,
+                  "key": "gl",
+                  "value": "<string>",
+                  "description": "Geographic location."
+                },
+                {
+                  "disabled": false,
+                  "key": "ceid",
+                  "value": "<string>",
+                  "description": "Country and language edition identifier."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/rss+xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e08a8343-ca57-4d97-8936-bdf1199bb459",
+              "name": "RSS feed of search results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rss",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "gl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ceid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/rss+xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/rss+xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <channel>\n    <title>(string)</title>\n    <link>(string)</link>\n    <description>(string)</description>\n    <language>(string)</language>\n    <lastBuildDate>(string)</lastBuildDate>\n    <items>\n      <title>(string)</title>\n      <link>(string)</link>\n      <pubDate>(string)</pubDate>\n      <description>(string)</description>\n      <source>(string)</source>\n    </items>\n    <items>\n      <title>(string)</title>\n      <link>(string)</link>\n      <pubDate>(string)</pubDate>\n      <description>(string)</description>\n      <source>(string)</source>\n    </items>\n  </channel>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "43b36af3-0418-43af-88b4-e806c9699b27",
+      "name": "Topics",
+      "description": {
+        "content": "Retrieve news by topic",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "30f756a8-21a9-4d72-8bd2-1423e528b645",
+          "name": "Google News RSS Get Headlines by Topic",
+          "request": {
+            "name": "Google News RSS Get Headlines by Topic",
+            "description": {
+              "content": "Retrieves news headlines for a specific topic such as WORLD, NATION, BUSINESS, TECHNOLOGY, ENTERTAINMENT, SPORTS, SCIENCE, or HEALTH.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rss",
+                "headlines",
+                "section",
+                "topic",
+                ":topic"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "hl",
+                  "value": "<string>",
+                  "description": "Host language."
+                },
+                {
+                  "disabled": false,
+                  "key": "gl",
+                  "value": "<string>",
+                  "description": "Geographic location."
+                },
+                {
+                  "disabled": false,
+                  "key": "ceid",
+                  "value": "<string>",
+                  "description": "Country and language edition identifier."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "topic",
+                  "description": "(Required) The topic identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/rss+xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c96573d-41c8-4865-b0f1-60a068e96e25",
+              "name": "RSS feed of topic headlines.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rss",
+                    "headlines",
+                    "section",
+                    "topic",
+                    ":topic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "gl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ceid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "topic",
+                      "description": "(Required) The topic identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/rss+xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/rss+xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <channel>\n    <title>(string)</title>\n    <link>(string)</link>\n    <description>(string)</description>\n    <language>(string)</language>\n    <lastBuildDate>(string)</lastBuildDate>\n    <items>\n      <title>(string)</title>\n      <link>(string)</link>\n      <pubDate>(string)</pubDate>\n      <description>(string)</description>\n      <source>(string)</source>\n    </items>\n    <items>\n      <title>(string)</title>\n      <link>(string)</link>\n      <pubDate>(string)</pubDate>\n      <description>(string)</description>\n      <source>(string)</source>\n    </items>\n  </channel>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://news.google.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8d4179ec-a1ab-41d8-8fdd-e583da2c8cd5",
+    "name": "Google News RSS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Google News provides RSS feeds that deliver news headlines organized by topic, location, and search query. While not an officially documented REST API, Google News exposes structured RSS/XML feeds that can be consumed programmatically to retrieve top stories, topic-based headlines, location-specific news, and search results across multiple languages and regions.\n\nContact Support:\n Name: Google News",
+      "type": "text/plain"
+    }
+  }
+}

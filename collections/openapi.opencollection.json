@@ -1,0 +1,176 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google News RSS API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Headlines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Google News RSS Get Top Headlines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://news.google.com/rss",
+            "params": [
+              {
+                "name": "hl",
+                "value": "",
+                "type": "query",
+                "description": "Host language (e.g., en-US)."
+              },
+              {
+                "name": "gl",
+                "value": "",
+                "type": "query",
+                "description": "Geographic location (e.g., US)."
+              },
+              {
+                "name": "ceid",
+                "value": "",
+                "type": "query",
+                "description": "Country and language edition identifier (e.g., US:en)."
+              }
+            ]
+          },
+          "docs": "Retrieves the top news headlines as an RSS feed."
+        },
+        {
+          "info": {
+            "name": "Google News RSS Get Headlines by Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://news.google.com/rss/headlines/section/geo/:location",
+            "params": [
+              {
+                "name": "location",
+                "value": "",
+                "type": "path",
+                "description": "The location name or code."
+              },
+              {
+                "name": "hl",
+                "value": "",
+                "type": "query",
+                "description": "Host language."
+              },
+              {
+                "name": "gl",
+                "value": "",
+                "type": "query",
+                "description": "Geographic location."
+              },
+              {
+                "name": "ceid",
+                "value": "",
+                "type": "query",
+                "description": "Country and language edition identifier."
+              }
+            ]
+          },
+          "docs": "Retrieves news headlines for a specific geographic location."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Topics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Google News RSS Get Headlines by Topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://news.google.com/rss/headlines/section/topic/:topic",
+            "params": [
+              {
+                "name": "topic",
+                "value": "",
+                "type": "path",
+                "description": "The topic identifier."
+              },
+              {
+                "name": "hl",
+                "value": "",
+                "type": "query",
+                "description": "Host language."
+              },
+              {
+                "name": "gl",
+                "value": "",
+                "type": "query",
+                "description": "Geographic location."
+              },
+              {
+                "name": "ceid",
+                "value": "",
+                "type": "query",
+                "description": "Country and language edition identifier."
+              }
+            ]
+          },
+          "docs": "Retrieves news headlines for a specific topic such as WORLD, NATION, BUSINESS, TECHNOLOGY, ENTERTAINMENT, SPORTS, SCIENCE, or HEALTH."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Google News RSS Search News",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://news.google.com/rss/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "The search query string."
+              },
+              {
+                "name": "hl",
+                "value": "",
+                "type": "query",
+                "description": "Host language."
+              },
+              {
+                "name": "gl",
+                "value": "",
+                "type": "query",
+                "description": "Geographic location."
+              },
+              {
+                "name": "ceid",
+                "value": "",
+                "type": "query",
+                "description": "Country and language edition identifier."
+              }
+            ]
+          },
+          "docs": "Searches for news articles matching the provided query."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
