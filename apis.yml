@@ -37,6 +37,10 @@ apis:
       - type: JSONLD
         url: https://raw.githubusercontent.com/api-evangelist/google-news/refs/heads/main/json-ld/google-news.jsonld
 common:
+  - type: VulnerabilityDisclosure
+    url: security/google-news-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/google-news-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/showcase/google-news-initiative
   - type: Portal
@@ -51,6 +55,8 @@ common:
     url: https://support.google.com/news
   - type: JSONLD
     url: https://raw.githubusercontent.com/api-evangelist/google-news/refs/heads/main/json-ld/google-news.jsonld
+  - url: https://blog.google/outreach-initiatives/google-news-initiative/rss/
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
