@@ -37,6 +37,8 @@ apis:
       - type: JSONLD
         url: https://raw.githubusercontent.com/api-evangelist/google-news/refs/heads/main/json-ld/google-news.jsonld
 common:
+  - type: AgenticAccess
+    url: agentic-access/google-news-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/google-news-vulnerability-disclosure.yml
   - type: DomainSecurity
