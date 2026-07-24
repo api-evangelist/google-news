@@ -1,0 +1,105 @@
+openapi: 3.1.0
+info:
+  title: Google News RSS Headlines Search API
+  description: Google News provides RSS feeds that deliver news headlines organized by topic, location, and search query. While not an officially documented REST API, Google News exposes structured RSS/XML feeds that can be consumed programmatically to retrieve top stories, topic-based headlines, location-specific news, and search results across multiple languages and regions.
+  version: 1.0.0
+  contact:
+    name: Google News
+    url: https://news.google.com
+  license:
+    name: Google Terms of Service
+    url: https://policies.google.com/terms
+servers:
+- url: https://news.google.com
+  description: Google News RSS Server
+tags:
+- name: Search
+  description: Search for news articles
+paths:
+  /rss/search:
+    get:
+      operationId: searchNews
+      summary: Google News RSS Search News
+      description: Searches for news articles matching the provided query.
+      tags:
+      - Search
+      parameters:
+      - name: q
+        in: query
+        required: true
+        description: The search query string.
+        schema:
+          type: string
+      - name: hl
+        in: query
+        description: Host language.
+        schema:
+          type: string
+      - name: gl
+        in: query
+        description: Geographic location.
+        schema:
+          type: string
+      - name: ceid
+        in: query
+        description: Country and language edition identifier.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: RSS feed of search results.
+          content:
+            application/rss+xml:
+              schema:
+                $ref: '#/components/schemas/RSSFeed'
+components:
+  schemas:
+    NewsItem:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The headline of the news article.
+        link:
+          type: string
+          format: uri
+          description: The URL of the news article.
+        pubDate:
+          type: string
+          description: Publication date of the article.
+        description:
+          type: string
+          description: A brief summary of the article.
+        source:
+          type: string
+          description: The news source name.
+    RSSFeed:
+      type: object
+      description: An RSS 2.0 feed containing news items.
+      properties:
+        channel:
+          type: object
+          properties:
+            title:
+              type: string
+              description: The title of the RSS channel.
+            link:
+              type: string
+              format: uri
+              description: The URL of the channel.
+            description:
+              type: string
+              description: Description of the channel.
+            language:
+              type: string
+              description: The language of the channel.
+            lastBuildDate:
+              type: string
+              description: The last build date of the feed.
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/NewsItem'
+externalDocs:
+  description: Google News
+  url: https://news.google.com
