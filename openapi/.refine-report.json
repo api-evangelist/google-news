@@ -1,0 +1,18 @@
+{
+  "provider": "google-news",
+  "sources": [
+    "google-news-headlines-api-openapi.yml",
+    "google-news-search-api-openapi.yml",
+    "google-news-topics-api-openapi.yml"
+  ],
+  "outputs": [
+    "google-news-headlines-api-openapi.yml",
+    "google-news-search-api-openapi.yml",
+    "google-news-topics-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
