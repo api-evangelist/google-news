@@ -1,0 +1,158 @@
+{
+  "item": [
+    {
+      "id": "4a07c1c1-7510-4019-8716-8e76bcea0ca6",
+      "name": "Topics",
+      "description": {
+        "content": "Retrieve news by topic",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "50d5114e-3c69-4eac-b086-bb55e2497ad5",
+          "name": "Google News RSS Get Headlines by Topic",
+          "request": {
+            "name": "Google News RSS Get Headlines by Topic",
+            "description": {
+              "content": "Retrieves news headlines for a specific topic such as WORLD, NATION, BUSINESS, TECHNOLOGY, ENTERTAINMENT, SPORTS, SCIENCE, or HEALTH.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rss",
+                "headlines",
+                "section",
+                "topic",
+                ":topic"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "hl",
+                  "value": "<string>",
+                  "description": "Host language."
+                },
+                {
+                  "disabled": false,
+                  "key": "gl",
+                  "value": "<string>",
+                  "description": "Geographic location."
+                },
+                {
+                  "disabled": false,
+                  "key": "ceid",
+                  "value": "<string>",
+                  "description": "Country and language edition identifier."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "topic",
+                  "description": "(Required) The topic identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/rss+xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2f79c213-b8a3-4641-a80f-b632f09270eb",
+              "name": "RSS feed of topic headlines.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rss",
+                    "headlines",
+                    "section",
+                    "topic",
+                    ":topic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "gl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ceid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "topic",
+                      "description": "(Required) The topic identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/rss+xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/rss+xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <channel>\n    <title>(string)</title>\n    <link>(string)</link>\n    <description>(string)</description>\n    <language>(string)</language>\n    <lastBuildDate>(string)</lastBuildDate>\n    <items>\n      <title>(string)</title>\n      <link>(string)</link>\n      <pubDate>(string)</pubDate>\n      <description>(string)</description>\n      <source>(string)</source>\n    </items>\n    <items>\n      <title>(string)</title>\n      <link>(string)</link>\n      <pubDate>(string)</pubDate>\n      <description>(string)</description>\n      <source>(string)</source>\n    </items>\n  </channel>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://news.google.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "799ae1c7-64db-4af0-b5ba-99d86f1ffffb",
+    "name": "Google News RSS Headlines Topics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Google News provides RSS feeds that deliver news headlines organized by topic, location, and search query. While not an officially documented REST API, Google News exposes structured RSS/XML feeds that can be consumed programmatically to retrieve top stories, topic-based headlines, location-specific news, and search results across multiple languages and regions.\n\nContact Support:\n Name: Google News",
+      "type": "text/plain"
+    }
+  }
+}

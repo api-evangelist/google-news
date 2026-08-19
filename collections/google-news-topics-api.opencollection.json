@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google News RSS Headlines Topics API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Topics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Google News RSS Get Headlines by Topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://news.google.com/rss/headlines/section/topic/:topic",
+            "params": [
+              {
+                "name": "topic",
+                "value": "",
+                "type": "path",
+                "description": "The topic identifier."
+              },
+              {
+                "name": "hl",
+                "value": "",
+                "type": "query",
+                "description": "Host language."
+              },
+              {
+                "name": "gl",
+                "value": "",
+                "type": "query",
+                "description": "Geographic location."
+              },
+              {
+                "name": "ceid",
+                "value": "",
+                "type": "query",
+                "description": "Country and language edition identifier."
+              }
+            ]
+          },
+          "docs": "Retrieves news headlines for a specific topic such as WORLD, NATION, BUSINESS, TECHNOLOGY, ENTERTAINMENT, SPORTS, SCIENCE, or HEALTH."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

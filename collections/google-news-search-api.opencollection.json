@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google News RSS Headlines Search API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Google News RSS Search News",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://news.google.com/rss/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "The search query string."
+              },
+              {
+                "name": "hl",
+                "value": "",
+                "type": "query",
+                "description": "Host language."
+              },
+              {
+                "name": "gl",
+                "value": "",
+                "type": "query",
+                "description": "Geographic location."
+              },
+              {
+                "name": "ceid",
+                "value": "",
+                "type": "query",
+                "description": "Country and language edition identifier."
+              }
+            ]
+          },
+          "docs": "Searches for news articles matching the provided query."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
