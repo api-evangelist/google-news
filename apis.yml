@@ -89,6 +89,8 @@ apis:
   humanURL: https://news.google.com
   baseURL: https://news.google.com/rss
   tags:
+  - Topic
+  tags_raw:
   - Topics
   properties:
   - type: OpenAPI
